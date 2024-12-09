@@ -11,11 +11,23 @@ config_version=5
 [application]
 
 config/name="RebelHorror"
-run/main_scene="res://menu/menu.tscn"
+run/main_scene="res://locations/location_0.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://common/icon.png"
 config/icon="res://common/icon.png"
+
+[autoload]
+
+DebugMenu="*res://common/debug_menu.tscn"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="canvas_items"
 
 [rendering]
 
