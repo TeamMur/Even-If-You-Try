@@ -1,12 +1,74 @@
-[gd_scene load_steps=4 format=3 uid="uid://f8e3pbqrcbql"]
+[gd_scene load_steps=19 format=3 uid="uid://f8e3pbqrcbql"]
 
-[ext_resource type="Script" path="res://temp/rotating.gd" id="2_c15xt"]
+[ext_resource type="Texture2D" uid="uid://bun15hudwabx3" path="res://temp/skybox.png" id="1_10ui0"]
+[ext_resource type="Texture2D" uid="uid://dwcnsnt4x5wxv" path="res://temp/grass.png" id="2_8fxhi"]
+[ext_resource type="Script" path="res://common/IAstate.gd" id="2_c15xt"]
+[ext_resource type="PackedScene" uid="uid://cxl6y0obu34d1" path="res://common/interaction_module.tscn" id="3_nolmg"]
+[ext_resource type="Script" path="res://common/IApickup.gd" id="4_5ml0u"]
+[ext_resource type="PackedScene" uid="uid://brmbqr8vwe7g7" path="res://common/player.tscn" id="4_h6l8b"]
+[ext_resource type="PackedScene" uid="uid://c6ikdlnqxs1d4" path="res://temp/скамейка/scene.gltf" id="5_ccjvh"]
+[ext_resource type="Texture2D" uid="uid://jfmdysv1umd1" path="res://temp/image.jpg" id="5_flq8y"]
+[ext_resource type="Script" path="res://common/IAplayer.gd" id="5_oej73"]
+[ext_resource type="Script" path="res://common/IAother.gd" id="6_ujvb5"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lrn6o"]
+panorama = ExtResource("1_10ui0")
+filter = false
+
+[sub_resource type="Sky" id="Sky_v4sui"]
+sky_material = SubResource("PanoramaSkyMaterial_lrn6o")
+
+[sub_resource type="Environment" id="Environment_17jbi"]
+background_mode = 2
+sky = SubResource("Sky_v4sui")
+tonemap_mode = 2
+ssr_fade_in = 5.27803e-05
+ssr_fade_out = 4.72515
+ssr_depth_tolerance = 16.41
+glow_intensity = 3.15
+glow_strength = 1.06
+glow_hdr_threshold = 2.13
+glow_hdr_scale = 1.2
+glow_map_strength = 0.75
+fog_light_color = Color(0.00392157, 0.00392157, 0.00392157, 1)
+fog_light_energy = 1.01
+fog_density = 0.3828
+fog_aerial_perspective = 0.19
+fog_sky_affect = 0.547
+fog_depth_curve = 2.94781e-05
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+volumetric_fog_emission = Color(0, 0, 0.0392157, 1)
+volumetric_fog_sky_affect = 0.441
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2qll2"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7ga8k"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wrbae"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v60n"]
+albedo_texture = ExtResource("2_8fxhi")
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gkd1n"]
+material = SubResource("StandardMaterial3D_5v60n")
+size = Vector2(200, 200)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mfhhr"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
 
 [node name="Location0" type="Node"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.478645, -0.573389, 0.664924, -0.144575, 0.695502, 0.703829, 0, 4.99378, 5.14763)
+light_energy = 0.33
+shadow_enabled = true
+shadow_blur = 1.56
+directional_shadow_split_1 = 0.6
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_17jbi")
 
 [node name="3D" type="SubViewportContainer" parent="."]
 texture_filter = 1
@@ -16,25 +78,82 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 4
 
 [node name="SubViewport" type="SubViewport" parent="3D"]
 handle_input_locally = false
-size = Vector2i(480, 270)
+size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="3D/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.99446, 0.105119, 0, -0.105119, 0.99446, 0, 1.65082, 3.73426)
-current = true
+[node name="IAstate" type="StaticBody3D" parent="3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0665488, 1.46277, -4.3502)
+script = ExtResource("2_c15xt")
 
-[node name="Куб" type="MeshInstance3D" parent="3D/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5261, 1.46277, 0.261111)
+[node name="InteractionModule" parent="3D/SubViewport/IAstate" instance=ExtResource("3_nolmg")]
+clue_text = "Повлиять"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/SubViewport/IAstate"]
+shape = SubResource("ConcavePolygonShape3D_2qll2")
+
+[node name="Cube" type="MeshInstance3D" parent="3D/SubViewport/IAstate"]
 mesh = SubResource("BoxMesh_7ga8k")
-skeleton = NodePath("../../..")
-script = ExtResource("2_c15xt")
+skeleton = NodePath("../../../..")
 
-[node name="Капсула" type="MeshInstance3D" parent="3D/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 0.661966, 0.749534, 0, -0.749534, 0.661966, 0, 1.47119, -2.15827)
-mesh = SubResource("CapsuleMesh_wrbae")
-skeleton = NodePath("../../..")
-script = ExtResource("2_c15xt")
+[node name="IApickup" type="StaticBody3D" parent="3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33771, 1.46277, -4.3502)
+script = ExtResource("4_5ml0u")
+item_id = "Постер"
+item_texture = ExtResource("5_flq8y")
+
+[node name="InteractionModule" parent="3D/SubViewport/IApickup" instance=ExtResource("3_nolmg")]
+clue_text = "Подобрать"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/SubViewport/IApickup"]
+shape = SubResource("ConcavePolygonShape3D_2qll2")
+
+[node name="Cube" type="MeshInstance3D" parent="3D/SubViewport/IApickup"]
+mesh = SubResource("BoxMesh_7ga8k")
+skeleton = NodePath("../../../..")
+
+[node name="IAplayer" type="StaticBody3D" parent="3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.34719, 1.46277, -4.3502)
+script = ExtResource("5_oej73")
+
+[node name="InteractionModule" parent="3D/SubViewport/IAplayer" instance=ExtResource("3_nolmg")]
+clue_text = "Измениться"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/SubViewport/IAplayer"]
+shape = SubResource("ConcavePolygonShape3D_2qll2")
+
+[node name="Cube" type="MeshInstance3D" parent="3D/SubViewport/IAplayer"]
+mesh = SubResource("BoxMesh_7ga8k")
+skeleton = NodePath("../../../..")
+
+[node name="IAother" type="StaticBody3D" parent="3D/SubViewport" node_paths=PackedStringArray("linked_object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.31946, 1.46277, -4.3502)
+script = ExtResource("6_ujvb5")
+linked_object = NodePath("../IAplayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/SubViewport/IAother"]
+shape = SubResource("ConcavePolygonShape3D_2qll2")
+
+[node name="Cube" type="MeshInstance3D" parent="3D/SubViewport/IAother"]
+mesh = SubResource("BoxMesh_7ga8k")
+skeleton = NodePath("../../../..")
+
+[node name="InteractionModule" parent="3D/SubViewport/IAother" instance=ExtResource("3_nolmg")]
+clue_text = "Активировать"
+
+[node name="Ground" type="MeshInstance3D" parent="3D/SubViewport"]
+transform = Transform3D(3.8, 0, 0, 0, 1, 0, 0, 0, 3.41917, 0, 0, 0)
+mesh = SubResource("PlaneMesh_gkd1n")
+
+[node name="Body" type="StaticBody3D" parent="3D/SubViewport/Ground"]
+
+[node name="Collision" type="CollisionShape3D" parent="3D/SubViewport/Ground/Body"]
+shape = SubResource("ConcavePolygonShape3D_mfhhr")
+
+[node name="Player" parent="3D/SubViewport" instance=ExtResource("4_h6l8b")]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("5_ccjvh")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.526353, -2.38419e-07, -1.71647)
+visible = false

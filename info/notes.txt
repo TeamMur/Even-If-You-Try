@@ -14,4 +14,35 @@
 	FPS - кадры в секунду
 	Screen - Экран
 	Window - Окошко
+
+Отправка данных:
+	Все
+	{"owner": node}
 	
+	Интерактивные объекты
+	{"interaction_type": string}
+	interaction_type:
+		"pick_up" - для подбираемых предметов
+		"buff" - для предметов дающих бафф
+	
+		Подбираемое
+		{"texture": load(texture.path), "item_id": string}
+		texture - текстура для отображения в инвентаре
+		item_id - уникальный идентификатор предмета
+	
+		Баффы
+		{"effect": callback}
+		effect - лямбда-функция с влиянием на игрока, которую он же и вызовет
+
+Получение данных:
+	по-сути один и тот же процесс,
+	но пока принято называть вещи своими именами
+	
+	прием данных происходит по signal(data), который вызывает функцию action(data)
+	Игрок:
+		signal analyze(data)
+		func analysis(data)
+	
+	Интерактивные объекты:
+		signal interact(data)
+		func interaction(data)

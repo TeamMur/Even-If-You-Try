@@ -1,14 +1,12 @@
 extends CanvasLayer
 
-@onready var label: Label = $Label
+@onready var info_label: Label = $Info
 
 @onready var window: Window = get_window()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.keycode == KEY_F3:
-		if event.is_pressed() and not event.is_echo():
-			visible = !visible
-			set_process(visible)
+	#visibility switcher
+	InputExtendend.on_key_pressed(event, KEY_F3, func(): visible = !visible; set_process(visible))
 
 func _process(delta: float) -> void:
 	# FPS
@@ -27,4 +25,4 @@ func _process(delta: float) -> void:
 	var result_string: String
 	var all_info = [fps, win_pos, win_size, scr_size, scr_id]
 	for info in all_info: result_string += " " + info + "\n"
-	label.text = result_string
+	info_label.text = result_string
