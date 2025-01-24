@@ -1,0 +1,79 @@
+extends Node
+class_name MasterOfTheSaves
+
+#Пакет текстур
+var texture_pack: Dictionary
+var tex_p: Dictionary:
+	get(): return texture_pack
+
+#Пакет классов
+var class_pack: Dictionary
+var cls_p: Dictionary:
+	get(): return class_pack
+
+#Пакет сцен
+var scene_pack: Dictionary
+var scn_p: Dictionary:
+	get(): return scene_pack
+
+#Пакет музыки
+var music_pack: Dictionary
+var mus_p: Dictionary:
+	get(): return music_pack
+
+#Инициализация
+func _init() -> void:
+	music_pack = default_music
+	texture_pack = default_textures
+	class_pack = default_classes
+	scene_pack = default_scenes
+
+#Дефолтный пакет музыки
+var default_music: Dictionary = {
+	#music
+	"OtherSide": "res://assets/audio/OtherSide_Music.mp3",
+	
+	#ambient
+	"WindInThePark": "res://assets/audio/WindInThePark_AMBIENT.mp3",
+	
+	#surface
+	"grass": [
+		"res://assets/audio/GrassStep1_Sound.mp3",
+		"res://assets/audio/GrassStep2_Sound.mp3",
+		"res://assets/audio/GrassStep3_Sound.mp3",
+		"res://assets/audio/GrassStep4_Sound.mp3",
+		"res://assets/audio/GrassStep5_Sound.mp3"
+	],
+	
+	"sand": [
+		"res://assets/audio/SandRoadStep1_Sound.mp3",
+		"res://assets/audio/SandRoadStep2_Sound.mp3",
+		"res://assets/audio/SandRoadStep3_Sound.mp3",
+		"res://assets/audio/SandRoadStep4_Sound.mp3",
+		"res://assets/audio/SandRoadStep5_Sound.mp3"
+	]
+}
+
+#Дефолтный пакет текстур
+var default_textures: Dictionary = {
+	"name":         "res://assets/common/Invalid.tex.png",
+}
+
+#Дефолтный пакет классов
+var default_classes: Dictionary = {
+	"name":         Object,
+}
+
+#Дефолтный пакет сцен
+var default_scenes: Dictionary = {
+	"name": "scene/path"
+}
+
+#Создание предмета на основе имени
+#основная задача - определение класса и текстуры
+#func create_item(name: String) -> Item:
+	#if not cls_p.has(name): push_warning("Несуществующий предмет"); return
+	#var cls: Object = cls_p.get(name)
+	#var item: Item = cls.new()
+	#item.name = name
+	#return item
