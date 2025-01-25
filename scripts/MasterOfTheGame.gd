@@ -9,6 +9,9 @@ func set_world(val): world = val
 var player: Player
 func set_player(val): player = val
 
+#Скорость падения объектов
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 #Порождение объекта
 func spawn_object(pos: Vector3, path: String) -> Unit:
 	var object = load(path).instantiate()

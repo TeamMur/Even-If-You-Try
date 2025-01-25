@@ -23,7 +23,7 @@ var cls: Object:
 	get(): return MS.cls_p.get(name)
 
 #Проверка на подходящесть цели
-#func is_fit(target: Unit) -> bool: return not target is Player
+func is_fit(target: Unit) -> bool: return not target is Player
 
 #Действие. TBD target пока осознанно без класса
 func action(_target) -> void: print("action")

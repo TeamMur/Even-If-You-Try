@@ -2,25 +2,25 @@ extends Node3D
 class_name Unit
 
 #Доступ к модели при наличии
-var mesh: Sprite2D:
+var mesh: MeshInstance3D:
 	get():
 		if not mesh and has_node("Mesh"): mesh = get_node("Mesh")
 		return mesh
 
 #Доступ к телу при наличии
-var body: PhysicsBody2D:
+var body: PhysicsBody3D:
 	get():
 		if not body and has_node("Body"): body = get_node("Body")
 		return body
 
 #Доступ к зоне при наличии
-var area: Area2D:
+var area: Area3D:
 	get():
 		if not area and has_node("Area"): area = get_node("Area")
 		return area
 
 #Доступ к аудио при наличии
-var audio: AudioStreamPlayer2D:
+var audio: AudioStreamPlayer3D:
 	get():
 		if not audio and has_node("Audio"): audio = get_node("Audio")
 		return audio

@@ -1,6 +1,11 @@
 extends Node2D
 class_name MasterOfTheLogic
 
+#Чувствительность мыши
+var mouse_sensitivity: float = 0.005
+var sens: float:
+	get(): return mouse_sensitivity
+
 #Сигнал Клик по цели с информацией о событии
 signal target_clicked(event: InputEvent, target)
 

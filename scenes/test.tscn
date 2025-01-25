@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_ged40"]
 [ext_resource type="Texture2D" uid="uid://bun15hudwabx3" path="res://assets/skybox.png" id="2_s12tk"]
-[ext_resource type="Script" path="res://scenes/world.gd" id="3_7ugnj"]
-[ext_resource type="PackedScene" uid="uid://brmbqr8vwe7g7" path="res://scenes/player.tscn" id="3_840lm"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="3_7ugnj"]
+[ext_resource type="PackedScene" uid="uid://c68nmft0vvwsf" path="res://scenes/player.tscn" id="3_840lm"]
 [ext_resource type="Texture2D" uid="uid://dwcnsnt4x5wxv" path="res://assets/grass.png" id="10_ynieu"]
 [ext_resource type="Texture2D" uid="uid://n0ijw77hexbm" path="res://assets/sand.png" id="11_tlvsn"]
 
@@ -181,9 +181,6 @@ environment = SubResource("Environment_17jbi")
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("3_7ugnj")
 
-[node name="Player" parent="World" instance=ExtResource("3_840lm")]
-visible = false
-
 [node name="test_mode32l" type="Node3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9539, 0, 6.54008)
 
@@ -237,3 +234,6 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="World/Ground2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gj2e6")
+
+[node name="Player" parent="World" instance=ExtResource("3_840lm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01208, 0)

@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 
 #Определение переменных для срабатывания сеттеров
 func _ready() -> void: is_active = false
-func _process(delta: float) -> void: update()
+func _process(_delta: float) -> void: update()
 
 #Обновление дебажной информации
 func update() -> void:
@@ -34,7 +34,8 @@ func update() -> void:
 	var scr_size: String = "Screen size: %d×%d" % [screen_size.x, screen_size.y]
 	
 	# RESULT
-	var result_string: String
+	var result_string: String = ""
 	var all_info: Array = [fps, win_pos, win_size, scr_size, scr_id]
-	for info in all_info: result_string += " " + info + "\n"
+	for info in all_info:
+		result_string += " " + info + "\n"
 	info_label.text = result_string
