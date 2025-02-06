@@ -33,7 +33,13 @@ func is_mouse_wheel(event: InputEvent) -> bool:
 func is_mouse_motion(event: InputEvent, button_mask: int = 0) -> bool:
 	return event is InputEventMouseMotion and event.button_mask == button_mask
 
+#Захват мыши
 var mouse_capture: bool = false:
 	set(value):
 		mouse_capture = value
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if mouse_capture else Input.MOUSE_MODE_VISIBLE
+
+#Переключение фокуса
+func _input(event: InputEvent) -> void:
+	if is_key_just_pressed(event, KEY_ESCAPE): mouse_capture = !ML.mouse_capture
+	if is_mouse_pressed(event, MOUSE_BUTTON_LEFT): mouse_capture = true

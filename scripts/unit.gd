@@ -2,7 +2,7 @@ extends Node3D
 class_name Unit
 
 #Доступ к модели при наличии
-var mesh: MeshInstance3D:
+var mesh: Node3D:
 	get():
 		if not mesh and has_node("Mesh"): mesh = get_node("Mesh")
 		return mesh
@@ -28,9 +28,12 @@ var audio: AudioStreamPlayer3D:
 #Хранилище
 var storage: Storage
 
+#Подсказка соответсвия
+var clue_text: String = "Подсказка юнита"
+
 #Реакция на воздействие
 signal reacted()
-func reaction() -> void:
+func reaction(_performer: Unit = null) -> void:
 	reacted.emit()
 	kill()
 
@@ -47,3 +50,9 @@ func kill(drop: bool = false) -> void:
 	if drop: drop()
 	killed.emit()
 	queue_free()
+
+#собственное действие
+func action(_target: Unit) -> void: pass
+
+#действие над запросчиком
+func interaction(_performer: Unit) -> void: pass

@@ -51,29 +51,46 @@ var default_music: Dictionary = {
 		"res://assets/audio/SandRoadStep3_Sound.mp3",
 		"res://assets/audio/SandRoadStep4_Sound.mp3",
 		"res://assets/audio/SandRoadStep5_Sound.mp3"
-	]
+	],
 }
 
 #Дефолтный пакет текстур
 var default_textures: Dictionary = {
 	"name":         "res://assets/common/Invalid.tex.png",
+	#item
+	"scissors": "res://assets/ITM_WireCuttersSturdy_01.tex.png",
+	"bush": "res://assets/models/bush_square_0.png",
+	#ui
+	"slot_hotbar":  "res://assets/slot0.png",
+	"slot_storage": "res://assets/slot0.png",
+	"slot_active":  "res://assets/slot1.png",
+	
+	"inv_bg_full": "res://assets/inv_bg.png",
+	"inv_bg_short": "res://assets/inv_bg0.png"
 }
 
 #Дефолтный пакет классов
 var default_classes: Dictionary = {
 	"name":         Object,
+	
+	"bush": Item,
+	
+	"scissors": ItemScissors,
 }
 
 #Дефолтный пакет сцен
 var default_scenes: Dictionary = {
-	"name": "scene/path"
+	"name": "scene/path",
+	
+	#meshes
+	"bush": "res://assets/models/bush_square.glb"
 }
 
 #Создание предмета на основе имени
 #основная задача - определение класса и текстуры
-#func create_item(name: String) -> Item:
-	#if not cls_p.has(name): push_warning("Несуществующий предмет"); return
-	#var cls: Object = cls_p.get(name)
-	#var item: Item = cls.new()
-	#item.name = name
-	#return item
+func create_item(name: String) -> Item:
+	if not cls_p.has(name): push_warning("Несуществующий предмет"); return
+	var cls: Object = cls_p.get(name)
+	var item: Item = cls.new()
+	item.name = name
+	return item

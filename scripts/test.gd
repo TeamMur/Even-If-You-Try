@@ -7,11 +7,9 @@ func _ready() -> void:
 	
 	MF.play_music(MS.mus_p.OtherSide)
 	MF.play_ambient(MS.mus_p.WindInThePark)
-
-#Переключение фокуса
-func _input(event: InputEvent) -> void:
-	if ML.is_key_just_pressed(event, KEY_ESCAPE):
-		ML.mouse_capture = !ML.mouse_capture
 	
-	if ML.is_mouse_pressed(event, MOUSE_BUTTON_LEFT):
-		ML.mouse_capture = true
+	var player: Player = get_node("World/Player")
+	var bench: Bench = get_node("World/Bench")
+	player.sit_down(bench)
+	
+	MG.spawn_drop(Vector3.ZERO, MS.create_item("bush"))

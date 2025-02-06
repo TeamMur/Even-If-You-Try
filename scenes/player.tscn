@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://c68nmft0vvwsf"]
+[gd_scene load_steps=14 format=3 uid="uid://c68nmft0vvwsf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4phyb"]
 [ext_resource type="Script" path="res://scripts/unit_charbody.gd" id="2_cqpq6"]
 [ext_resource type="Script" path="res://scripts/unit_feet.gd" id="3_47gi6"]
 [ext_resource type="Script" path="res://scripts/unit_audio.gd" id="4_brc8b"]
+[ext_resource type="Script" path="res://scripts/interface.gd" id="5_o15vn"]
+[ext_resource type="Texture2D" uid="uid://dsb0e36c34a4l" path="res://assets/inv_bg.png" id="6_7p2v5"]
+[ext_resource type="Script" path="res://unit_inventory.gd" id="6_p5xmi"]
+[ext_resource type="Texture2D" uid="uid://5ki0o1odsctv" path="res://assets/slot0.png" id="7_dty2j"]
+[ext_resource type="Script" path="res://scripts/cursor.gd" id="9_ef4lu"]
+[ext_resource type="Script" path="res://scenes/energy_bar.gd" id="10_lhpj7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_s4lg4"]
 
@@ -17,6 +23,9 @@ script = ExtResource("1_4phyb")
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 current = true
+
+[node name="Eyes" type="RayCast3D" parent="Camera"]
+target_position = Vector3(0, 0, -3)
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 visible = false
@@ -44,3 +53,337 @@ script = ExtResource("3_47gi6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 bus = &"SFX"
 script = ExtResource("4_brc8b")
+
+[node name="Energy" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="Interface" type="CanvasLayer" parent="."]
+script = ExtResource("5_o15vn")
+
+[node name="Margin" type="MarginContainer" parent="Interface"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+
+[node name="INVbg" type="TextureRect" parent="Interface/Margin"]
+layout_mode = 2
+texture = ExtResource("6_7p2v5")
+
+[node name="Margin" type="MarginContainer" parent="Interface/Margin"]
+texture_filter = 1
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 12
+
+[node name="Inventory" type="GridContainer" parent="Interface/Margin/Margin"]
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 5
+script = ExtResource("6_p5xmi")
+
+[node name="Slot" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot2" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot3" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot4" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot5" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot6" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot7" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot8" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot9" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot10" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot11" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot11"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot12" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot12"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot13" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot13"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot14" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot14"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Slot15" type="TextureRect" parent="Interface/Margin/Margin/Inventory"]
+layout_mode = 2
+texture = ExtResource("7_dty2j")
+
+[node name="ItemTexture" type="TextureRect" parent="Interface/Margin/Margin/Inventory/Slot15"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Notificator" type="VBoxContainer" parent="Interface"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -88.0
+offset_right = 373.0
+offset_bottom = -43.0
+grow_vertical = 0
+
+[node name="Clue" type="Label" parent="Interface"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -88.0
+offset_right = 98.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "ПОДСКАЗКА"
+
+[node name="Cursor" type="Control" parent="Interface"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_ef4lu")
+
+[node name="EnergyBar" type="ProgressBar" parent="Interface"]
+offset_left = 1752.0
+offset_top = 1032.0
+offset_right = 1896.0
+offset_bottom = 1064.0
+step = 1.0
+script = ExtResource("10_lhpj7")
