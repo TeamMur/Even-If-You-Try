@@ -48,6 +48,7 @@ func _input(event: InputEvent) -> void:
 		short_view = !short_view
 
 func notice(text) -> void:
+	if not text: return
 	if not is_active: return
 	var notice_label = Label.new()
 	notice_label.text = text

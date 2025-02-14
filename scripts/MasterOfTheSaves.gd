@@ -60,6 +60,8 @@ var default_textures: Dictionary = {
 	#item
 	"scissors": "res://assets/ITM_WireCuttersSturdy_01.tex.png",
 	"bush": "res://assets/models/bush_square_0.png",
+	"paper": "res://assets/CRFT_PaperMache_002.tex.png",
+	"key": "res://assets/ITM_Key_Emerald_002.tex.png",
 	#ui
 	"slot_hotbar":  "res://assets/slot0.png",
 	"slot_storage": "res://assets/slot0.png",
@@ -74,6 +76,8 @@ var default_classes: Dictionary = {
 	"name":         Object,
 	
 	"bush": Item,
+	"paper": Item,
+	"key": ItemKey,
 	
 	"scissors": ItemScissors,
 }

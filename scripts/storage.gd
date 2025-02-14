@@ -50,10 +50,15 @@ func drop_all(pos: Vector3) -> bool:
 
 #Очистка ячейки
 signal removed(item: Item)
-func remove_item(item) -> void:
+func remove_item(item, resize = false) -> void: #new: resize
 	var index: int = items.find(item)
 	items[index] = null
 	removed.emit(item)
+	if index+1 == size and resize: resize(index)
+
+func get_item(index: int) -> Item: #new
+	if index < 0: return null
+	return items[index]
 
 #Изменение размера
 func resize(size) -> void:

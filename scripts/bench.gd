@@ -12,4 +12,5 @@ var sit_pos: Vector3:
 var stand_pos: Vector3:
 	get(): return stand_marker.global_position
 
-func _init() -> void: clue_text = "Сесть"
+func _init() -> void:
+	clue_text = "Сесть"

@@ -26,3 +26,5 @@ func is_fit(target: Unit) -> bool: return not target is Player
 
 #Действие. TBD target пока осознанно без класса
 func action(_performer: Unit, _target: Variant) -> void: print("action")
+
+#нужна функция затраты

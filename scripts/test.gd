@@ -11,5 +11,3 @@ func _ready() -> void:
 	var player: Player = get_node("World/Player")
 	var bench: Bench = get_node("World/Bench")
 	player.sit_down(bench)
-	
-	MG.spawn_drop(Vector3.ZERO, MS.create_item("bush"))

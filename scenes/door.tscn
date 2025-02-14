@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhvsa3pm3s58q"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_7mxc5"]
+[ext_resource type="PackedScene" uid="uid://d4bxu6368gd0i" path="res://assets/models/door_wooden_door_metal.glb" id="2_fy0uk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l84gt"]
+size = Vector3(1, 2.43481, 0.129883)
+
+[node name="Door" type="Node3D"]
+script = ExtResource("1_7mxc5")
+
+[node name="Mesh" parent="." instance=ExtResource("2_fy0uk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.678197, 1.22626, 0)
+
+[node name="Area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.678197, 0, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21765, 0)
+shape = SubResource("BoxShape3D_l84gt")
+
+[node name="Body" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.678197, 0, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21765, 0)
+shape = SubResource("BoxShape3D_l84gt")
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="."]

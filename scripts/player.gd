@@ -145,7 +145,7 @@ func action(target: Unit) -> void:
 			var bench: Bench = target
 			if not seat.is_occupied: sit_down(bench)
 		else: target.interaction(self)
-		interface.notice("Успешно")
+		interface.notice(target.notice_text)
 	else: push_warning("Невозможно применить предмет: Цель некорректа")
 
 #подбор дропа

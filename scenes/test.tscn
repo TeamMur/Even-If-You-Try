@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://f8e3pbqrcbql"]
+[gd_scene load_steps=17 format=3 uid="uid://f8e3pbqrcbql"]
 
 [ext_resource type="Script" path="res://scripts/test.gd" id="1_ged40"]
 [ext_resource type="Texture2D" uid="uid://bun15hudwabx3" path="res://assets/skybox.png" id="2_s12tk"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c68nmft0vvwsf" path="res://scenes/player.tscn" id="3_840lm"]
 [ext_resource type="PackedScene" uid="uid://q587eukeyuqd" path="res://scenes/bench.tscn" id="7_1sdxa"]
 [ext_resource type="PackedScene" uid="uid://bs71w3rrna6am" path="res://scenes/tree_roots.tscn" id="7_i5616"]
+[ext_resource type="PackedScene" uid="uid://dhvsa3pm3s58q" path="res://scenes/door.tscn" id="8_7aqpw"]
+[ext_resource type="PackedScene" uid="uid://dxnnqnymh3mar" path="res://scenes/trach_can.tscn" id="8_hnf3w"]
+[ext_resource type="Texture2D" uid="uid://btgmemqvie750" path="res://common/icon.png" id="10_j48s8"]
 [ext_resource type="Texture2D" uid="uid://dwcnsnt4x5wxv" path="res://assets/grass.png" id="10_ynieu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lrn6o"]
@@ -196,3 +199,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.8, 9)
 
 [node name="Roots20" parent="World" instance=ExtResource("7_i5616")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0.8, 9)
+
+[node name="TrashCan" parent="World" instance=ExtResource("8_hnf3w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.46114, 0, 2.41028)
+
+[node name="Door" parent="World" instance=ExtResource("8_7aqpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.443658, 0, 13.5867)
+
+[node name="Sprite3D" type="Sprite3D" parent="World/Door"]
+transform = Transform3D(0.228, 0, 0, 0, 0.25, 0, 0, 0, 1.136, -0.674193, 1.74969, 0.0645704)
+layers = 524288
+texture = ExtResource("10_j48s8")

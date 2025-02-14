@@ -30,6 +30,7 @@ var storage: Storage
 
 #Подсказка соответсвия
 var clue_text: String = "Подсказка юнита"
+var notice_text: String = ""
 
 #Реакция на воздействие
 signal reacted()
