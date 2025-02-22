@@ -80,14 +80,7 @@ func update_and_item():
 	hand.add_child(mesh)
 	mesh.set_owner(self)
 
-#Тестирующая функция
-func test() -> void:
-	storage = Storage.new()
-	storage.resize(15) #= размеру Inventory
-	storage.add_item(MS.create_item("scissors"))
-	storage.add_item(MS.create_item("phone"))
-
-func _init() -> void: test()
+func _init() -> void: storage = Storage.new(15)#= размеру Inventory
 
 #Определение игрока
 func _ready() -> void:

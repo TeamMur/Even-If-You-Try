@@ -23,6 +23,25 @@ var active_item_index: int:
 			active_item_index = val
 			active_index_changed.emit()
 
+signal updated()
+func _init(size: int = 0, items: Variant = null) -> void:
+	if size:
+		self.items.resize(size)
+	if items:
+		if items is Item: add_item(items, true)
+		elif items is Array[Item]: for item in items: add_item(item, true)
+		elif items is String:
+			var item_array: Array[Item]
+			if items is String:
+				var split: Array = items.split("/")
+				for alias: String in split: add_item(MS.create_item(alias), true)
+			else: item_array = items
+	var upd: Callable = func(_arg): updated.emit()
+	added.connect(upd)
+	removed.connect(upd)
+	moved.connect(upd)
+	inserted.connect(upd)
+
 #Добавление предмета
 signal added(item: Item)
 func add_item(item: Item, append: bool = false) -> bool:
@@ -72,6 +91,11 @@ func resize(size) -> void:
 #Проверка наличия предмета
 func has(item: Item) -> bool:
 	return items.has(item)
+
+signal inserted(item: Item)
+func insert_item(index: int, item: Item):
+	items[index] = item
+	inserted.emit(item)
 
 #Перемещение предмета
 signal moved(item: Item)
