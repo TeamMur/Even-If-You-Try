@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://djwfri7crt0w6"]
+
+[ext_resource type="PackedScene" uid="uid://bnd7uo5hfqwoq" path="res://assets/models/garden_scissors.glb" id="1_ubihc"]
+
+[node name="Scissors" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_ubihc")]
+transform = Transform3D(-0.00429568, -0.00118707, 0.00226671, 0.00192579, 0.00141656, 0.00439144, -0.00168478, 0.00464588, -0.000759811, -0.0732417, -0.101096, -0.0882365)

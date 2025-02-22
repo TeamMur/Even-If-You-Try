@@ -21,6 +21,9 @@ var interface: UnitInterface:
 #Камера. Отдельный скрипт не нужен, т.к. игрок один единственный
 @onready var camera: Camera3D = $Camera
 
+#Руки
+@onready var hand: Node3D = $Camera/Hand
+
 #Таймер для энергии
 @onready var energy_timer: Timer = $Energy
 
@@ -66,11 +69,23 @@ var focused_target: Unit:
 		var target: Unit = body.owner
 		return target
 
+func update_and_item():
+	for child in hand.get_children(): child.queue_free()
+	
+	var item: Item = storage.active_item
+	if not item: return
+	
+	if not item.mesh: return
+	var mesh: Node3D = load(item.mesh).instantiate()
+	hand.add_child(mesh)
+	mesh.set_owner(self)
+
 #Тестирующая функция
 func test() -> void:
 	storage = Storage.new()
 	storage.resize(15) #= размеру Inventory
 	storage.add_item(MS.create_item("scissors"))
+	storage.add_item(MS.create_item("phone"))
 
 func _init() -> void: test()
 
@@ -78,6 +93,7 @@ func _init() -> void: test()
 func _ready() -> void:
 	MG.set_player(self)
 	interface.is_active = true
+	storage.active_index_changed.connect(update_and_item)
 
 func _process(_delta: float) -> void:
 	if not is_captured:
@@ -136,17 +152,26 @@ func camera_rotation(event: InputEventMouseMotion) -> void:
 
 #Использование предмета
 #по сигналу target_clicked
-func action(target: Unit) -> void:
-	if target:
-		#применение предмета при подходящей цели
-		var item: Item = storage.active_item
-		if item and item.is_fit(target): item.action(self, target)
-		elif target is Bench:
-			var bench: Bench = target
-			if not seat.is_occupied: sit_down(bench)
-		else: target.interaction(self)
-		interface.notice(target.notice_text)
-	else: push_warning("Невозможно применить предмет: Цель некорректа")
+func action(target: Unit) -> void: interact(target)
+
+#Взаимодействие. По сути копия action, но семантика другая
+func interact(target: Unit) -> bool:
+	if not target: return false
+	
+	var item: Item = get_item()
+	#if not item.is_fit(target): return false
+	
+	var action_data: ActionData = item.alt_action_type.new(self, item, target)
+	
+	if not target.reaction(action_data): return false
+	item.spend(interface.inventory)
+	interface.notice(target.notice_text)
+	return true
+
+func get_item():
+	var item: Item = storage.active_item
+	if not item: item = ItemHands.new()
+	return item
 
 #подбор дропа
 func take_drop(drop: Drop) -> bool: return storage.add_item(drop.item)

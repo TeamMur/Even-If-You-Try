@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://c68nmft0vvwsf"]
+[gd_scene load_steps=14 format=3 uid="uid://c68nmft0vvwsf"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_4phyb"]
 [ext_resource type="Script" path="res://scripts/unit_charbody.gd" id="2_cqpq6"]
-[ext_resource type="Script" path="res://scripts/phone_camera.gd" id="2_l766e"]
+[ext_resource type="PackedScene" uid="uid://bewpr7knn7xva" path="res://scenes/phone.tscn" id="2_e4t43"]
 [ext_resource type="Script" path="res://scripts/unit_feet.gd" id="3_47gi6"]
 [ext_resource type="Script" path="res://scripts/unit_audio.gd" id="4_brc8b"]
 [ext_resource type="Script" path="res://scripts/interface.gd" id="5_o15vn"]
@@ -12,42 +12,26 @@
 [ext_resource type="Script" path="res://scripts/cursor.gd" id="9_ef4lu"]
 [ext_resource type="Script" path="res://scripts/energy_bar.gd" id="10_lhpj7"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_s4lg4"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_y5rmr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1vwkv"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_8tgj4"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="GDScript" id="GDScript_i4fso"]
-script/source = "extends TextureRect
-"
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_4phyb")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-cull_mask = 1
+cull_mask = 3
 current = true
 
 [node name="Eyes" type="RayCast3D" parent="Camera"]
 target_position = Vector3(0, 0, -3)
 
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(1920, 1080)
+[node name="Hand" type="Node3D" parent="Camera"]
+transform = Transform3D(0.710652, 0, -0.703544, 0, 1, 0, 0.703544, 0, 0.710652, 0.282923, -0.102598, -0.345043)
 
-[node name="Camera" type="Camera3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555, 0)
-cull_mask = 524289
-current = true
-script = ExtResource("2_l766e")
-
-[node name="Mesh" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("BoxMesh_s4lg4")
+[node name="Phone" parent="Camera/Hand" instance=ExtResource("2_e4t43")]
+script = null
 
 [node name="Area" type="Area3D" parent="."]
 
@@ -405,12 +389,3 @@ offset_right = 1896.0
 offset_bottom = 1064.0
 step = 1.0
 script = ExtResource("10_lhpj7")
-
-[node name="Phone" type="TextureRect" parent="Interface"]
-offset_left = 1456.0
-offset_top = 624.0
-offset_right = 1840.0
-offset_bottom = 840.0
-texture = SubResource("ViewportTexture_8tgj4")
-expand_mode = 1
-script = SubResource("GDScript_i4fso")

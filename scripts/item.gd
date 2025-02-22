@@ -2,7 +2,9 @@ extends Object
 class_name Item
 
 #Уникальное имя предмета
-var name: String = "name"
+var alias: String = "name"
+var action_type = ActionData
+var alt_action_type = ActionInteract
 
 #Подсказка соответсвия
 var clue_text: String = "Применить"
@@ -11,7 +13,7 @@ var clue_text: String = "Применить"
 var texture: Texture:
 	get():
 		if !texture:
-			var path = MS.tex_p.get(name)
+			var path = MS.tex_p.get(alias)
 			if path: texture = load(path)
 		return texture
 
@@ -19,12 +21,12 @@ var tex: Texture:
 	get(): return texture
 	
 var mesh: String:
-	get(): return MS.scn_p.get(name)
+	get(): return MS.scn_p.get(alias, "")
 
 #Проверка на подходящесть цели
-func is_fit(target: Unit) -> bool: return not target is Player
+func is_fit(target: Unit) -> bool:
+	if not target: return false
+	return false
 
-#Действие. TBD target пока осознанно без класса
-func action(_performer: Unit, _target: Variant) -> void: print("action")
-
-#нужна функция затраты
+#Потратить
+func spend(storage: Variant) -> void: pass

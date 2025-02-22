@@ -62,6 +62,8 @@ var default_textures: Dictionary = {
 	"bush": "res://assets/models/bush_square_0.png",
 	"paper": "res://assets/CRFT_PaperMache_002.tex.png",
 	"key": "res://assets/ITM_Key_Emerald_002.tex.png",
+	"phone": "res://assets/free-png.ru-694-370x230.png",
+	
 	#ui
 	"slot_hotbar":  "res://assets/slot0.png",
 	"slot_storage": "res://assets/slot0.png",
@@ -80,6 +82,7 @@ var default_classes: Dictionary = {
 	"key": ItemKey,
 	
 	"scissors": ItemScissors,
+	"phone":    ItemPhone
 }
 
 #Дефолтный пакет сцен
@@ -87,14 +90,19 @@ var default_scenes: Dictionary = {
 	"name": "scene/path",
 	
 	#meshes
-	"bush": "res://assets/models/bush_square.glb"
+	"bush": "res://assets/models/bush_square.glb",
+	
+	#items
+	"phone": "res://scenes/phone.tscn",
+	"paper": "res://scenes/paper.tscn",
+	"scissors": "res://scenes/scissors.tscn"
 }
 
 #Создание предмета на основе имени
 #основная задача - определение класса и текстуры
-func create_item(name: String) -> Item:
-	if not cls_p.has(name): push_warning("Несуществующий предмет"); return
-	var cls: Object = cls_p.get(name)
+func create_item(alias: String) -> Item:
+	if not cls_p.has(alias): push_warning("Несуществующий предмет"); return
+	var cls: Object = cls_p.get(alias)
 	var item: Item = cls.new()
-	item.name = name
+	item.alias = alias
 	return item

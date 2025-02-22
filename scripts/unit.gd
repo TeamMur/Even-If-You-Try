@@ -34,9 +34,7 @@ var notice_text: String = ""
 
 #Реакция на воздействие
 signal reacted()
-func reaction(_performer: Unit = null) -> void:
-	reacted.emit()
-	kill()
+func reaction(action_data: ActionData = null) -> bool: return false
 
 #Сброс предметов
 signal dropped()
@@ -51,6 +49,10 @@ func kill(drop: bool = false) -> void:
 	if drop: drop()
 	killed.emit()
 	queue_free()
+
+#tiso
+func take_damage(damage: float):
+	kill()
 
 #собственное действие
 func action(_target: Unit) -> void: pass

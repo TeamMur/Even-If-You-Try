@@ -1,4 +1,5 @@
 extends Camera3D
 
 func _process(delta: float) -> void:
-	global_transform = owner.camera.global_transform
+	var phone = owner
+	global_transform = phone.owner.camera.global_transform

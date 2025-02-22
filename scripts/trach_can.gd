@@ -11,14 +11,11 @@ func _init() -> void:
 	storage.add_item(MS.create_item("paper"), true)
 	storage.add_item(MS.create_item("paper"), true)
 
-#костыль. Нужно создать ItemGarbage
-func reaction(performer: Unit = null) -> void: interaction(performer)
-
-#взаимодействие: передача предмета игроку и удаление
-func interaction(performer: Unit = null) -> void:
-	if not performer is Player: return
-	var player: Player = performer
+func reaction(action_data: ActionData = null) -> bool:
+	if not action_data.performer is Player: return false
+	var player: Player = action_data.performer
 	var item: Item = storage.get_item(storage.size-1)
-	if not item: return
+	if not item: return false
 	if player.storage.add_item(item): storage.remove_item(item, true)
 	if not storage.size: notice_text = ""
+	return true

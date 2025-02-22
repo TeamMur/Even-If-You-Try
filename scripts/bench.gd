@@ -14,3 +14,9 @@ var stand_pos: Vector3:
 
 func _init() -> void:
 	clue_text = "Сесть"
+
+func reaction(action_data: ActionData = null) -> bool:
+	var player: Player = action_data.performer
+	if not player: return false
+	player.sit_down(self)
+	return true

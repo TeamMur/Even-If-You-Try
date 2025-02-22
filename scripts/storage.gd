@@ -16,7 +16,12 @@ var active_item: Item = null:
 		else: return null
 
 #Индекс активного предмета
-var active_item_index: int 
+signal active_index_changed()
+var active_item_index: int:
+	set(val):
+		if active_item_index != val:
+			active_item_index = val
+			active_index_changed.emit()
 
 #Добавление предмета
 signal added(item: Item)
