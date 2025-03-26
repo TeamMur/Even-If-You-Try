@@ -11,19 +11,24 @@ config_version=5
 [application]
 
 config/name="Even If You Try"
-run/main_scene="res://scenes/test.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/tags=PackedStringArray("team")
+run/main_scene="res://scenes/world/game_scene.tscn"
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://common/icon.png"
 config/icon="res://common/icon.png"
 
+[audio]
+
+buses/default_bus_layout="res://common/default_bus_layout.tres"
+
 [autoload]
 
-DM="*res://scenes/DebugMenu.tscn"
-ML="*res://scripts/MasterOfTheLogic.gd"
-MF="*res://scenes/MF.tscn"
-MS="*res://scripts/MasterOfTheSaves.gd"
-MG="*res://scripts/MasterOfTheGame.gd"
+ML="*res://scripts/globals/ML.gd"
+MF="*res://scripts/globals/MF.tscn"
+MS="*res://scripts/globals/MS.gd"
+MG="*res://scripts/globals/MG.gd"
+MD="*res://scripts/globals/MT.tscn"
 
 [display]
 
@@ -36,6 +41,14 @@ window/stretch/mode="canvas_items"
 [dotnet]
 
 project/assembly_name="RebelHorror"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
+
+[gui]
+
+theme/custom="uid://b0a4hubs7lucs"
 
 [input]
 
@@ -72,4 +85,5 @@ run={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.152941, 0.152941, 0.152941, 1)

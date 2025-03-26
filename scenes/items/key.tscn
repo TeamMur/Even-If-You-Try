@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbkby5qg83s0r"]
+
+[ext_resource type="Texture2D" uid="uid://b5woy62wsd4h" path="res://assets/temp/orange.png" id="1_8tu47"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lutsq"]
+albedo_texture = ExtResource("1_8tu47")
+uv1_triplanar = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_lutsq"]
+inner_radius = 0.05
+outer_radius = 0.1
+rings = 6
+ring_segments = 6
+
+[sub_resource type="BoxMesh" id="BoxMesh_5cvtb"]
+size = Vector3(0.04, 0.04, 0.215)
+
+[node name="Paper" type="Node3D"]
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(3.0315e-08, 0.693527, -0.72043, 1, -4.37114e-08, 3.10881e-16, -3.1491e-08, -0.72043, -0.693527, 0.0596523, -0.039447, -0.116782)
+material_override = SubResource("StandardMaterial3D_lutsq")
+mesh = SubResource("TorusMesh_lutsq")
+
+[node name="Mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.693527, 0, -0.72043, 0, 1, 0, 0.72043, 0, -0.693527, -0.0596524, -0.039447, -0.231631)
+material_override = SubResource("StandardMaterial3D_lutsq")
+mesh = SubResource("BoxMesh_5cvtb")

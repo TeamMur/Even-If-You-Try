@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxnnqnymh3mar"]
+
+[ext_resource type="Script" uid="uid://dpawrny4uggwl" path="res://scripts/units/trach_can.gd" id="1_72w0y"]
+[ext_resource type="Material" uid="uid://c08sjbby27vf3" path="res://assets/temp/purple.tres" id="2_u4vp8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_udyxx"]
+material = ExtResource("2_u4vp8")
+size = Vector3(0.5, 1.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l84gt"]
+size = Vector3(0.5, 1.5, 1)
+
+[node name="TrashCan" type="Node3D"]
+script = ExtResource("1_72w0y")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_udyxx")
+
+[node name="Body" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Collision" type="CollisionShape3D" parent="Body"]
+shape = SubResource("BoxShape3D_l84gt")
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="."]

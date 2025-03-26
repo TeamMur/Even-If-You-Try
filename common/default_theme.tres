@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b0a4hubs7lucs"]
+
+[ext_resource type="FontFile" uid="uid://dvrbktcei6lvg" path="res://common/Fifaks10Dev1.ttf" id="1_ch0bn"]
+
+[resource]
+default_font = ExtResource("1_ch0bn")
+default_font_size = 12

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmih701lcabyh"]
+
+[ext_resource type="Script" uid="uid://goewjxtcpjqv" path="res://scripts/globals/MF.gd" id="1_ufdm2"]
+
+[node name="MS" type="Node"]
+script = ExtResource("1_ufdm2")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="MUSIC" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="AMBIENT" type="AudioStreamPlayer" parent="."]
+bus = &"Ambient"
